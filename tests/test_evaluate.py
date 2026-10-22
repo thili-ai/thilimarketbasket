@@ -8,8 +8,12 @@ from thilimarketbasket.verbalize import parse_basket, verbalize_prefix
 def test_rank_is_one_for_the_best_score_and_ties_count_against_the_target():
     scores = np.array([0.1, 0.9, 0.5, 0.5])
     assert rank_of(scores, 1) == 1
-    assert rank_of(scores, 2) == 2          # only index 1 is higher; the tie with index 3 does not help it
+    assert rank_of(scores, 2) == 3          # index 1 is higher and index 3 ties, so the target is third
     assert rank_of(scores, 0) == 4
+
+
+def test_a_scorer_that_gives_every_item_the_same_score_does_not_win():
+    assert rank_of(np.zeros(10), 4) == 10
 
 
 def test_excluded_items_do_not_count_as_better_candidates():

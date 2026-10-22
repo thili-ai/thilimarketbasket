@@ -61,8 +61,8 @@ def rank_of(scores: np.ndarray, target: int, exclude: Iterable[int] = ()) -> int
     """The rank (1 is best) of `target` among the candidates not in `exclude`. Ties count against the target."""
     keep = np.ones(len(scores), dtype=bool)
     keep[list(exclude)] = False
-    keep[target] = True
-    return 1 + int((scores[keep] > scores[target]).sum())
+    keep[target] = False  # the target is compared with the others, never with itself
+    return 1 + int((scores[keep] >= scores[target]).sum())
 
 
 def make_cases(baskets, names: Sequence[str], n_cases: int, seed: int = 0) -> List[dict]:
