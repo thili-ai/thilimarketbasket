@@ -1,0 +1,16 @@
+.env
+client_secret*.json
+token.json
+service-account*.json
+*-credentials.json
+__pycache__/
+*.pyc
+.venv/
+dist/
+build/
+*.egg-info/
+*.db
+.pytest_cache/
+checkpoints/
+.ipynb_checkpoints/
+.DS_Store

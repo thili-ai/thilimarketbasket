@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "thilimarketbasket"
+version = "0.0.1"
+description = "A small, hackable experiment: can a small language model learn frequent itemsets? Planted baskets, an exact miner, continued pretraining, and a measured recovery comparison."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "thili.ai" }]
+keywords = ["market-basket", "frequent-itemsets", "association-rules", "llm", "pretraining", "recsys"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Intended Audience :: Education",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "numpy>=1.21",
+  "pandas>=1.3",
+]
+
+[project.optional-dependencies]
+# Tokenizing, training and probing a model (lessons 7 to 10). MLX runs on Apple-silicon Macs only.
+train = [
+  "transformers>=4.40",
+  "mlx>=0.20; sys_platform == 'darwin' and platform_machine == 'arm64'",
+  "mlx-lm>=0.20; sys_platform == 'darwin' and platform_machine == 'arm64'",
+]
+dev = ["pytest>=7"]
+
+[project.urls]
+Homepage = "https://github.com/thili-ai/thilimarketbasket"
+Repository = "https://github.com/thili-ai/thilimarketbasket"
+
+[tool.hatch.build.targets.wheel]
+packages = ["thilimarketbasket"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
