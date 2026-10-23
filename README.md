@@ -28,17 +28,18 @@ lesson by lesson. Consult this repo to unblock or to check your work.
 | 8 | The off-the-shelf baseline, scored on next-item prediction (MRR, hits@K) | `evaluate.py` |
 | 9 | Continued pretraining of SmolLM2-135M on verbalized baskets | `pretrain.py` |
 | 10 | Probe the model: have it write baskets, mine them, score against the exact truth | `probe.py` |
+| 11 | Cross-sell and upsell: the model's suggestions against a plain counting recommender | `recommend.py` |
 
 ## Develop
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"          # the shop and the exact miner: numpy and pandas only
-pip install -e ".[dev,train]"    # adds tokenizing, training and probing (lessons 7 to 10)
+pip install -e ".[dev,train]"    # adds tokenizing, training and probing (lessons 7 to 11)
 pytest
 ```
 
-Lessons 7 to 10 use [MLX](https://github.com/ml-explore/mlx), Apple's framework for the Mac GPU, so
+Lessons 7 to 11 use [MLX](https://github.com/ml-explore/mlx), Apple's framework for the Mac GPU, so
 they need an Apple-silicon Mac (16 GB of memory recommended). The notebooks of lessons 8 to 10 end with an untested PyTorch version of the same step. On any other machine the package
 installs, and the tests run with the two that need MLX skipped. Training the reference run
 (800 steps of 16 baskets) takes about 25 minutes on an M3.
